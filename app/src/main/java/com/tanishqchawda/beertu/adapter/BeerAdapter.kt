@@ -66,8 +66,6 @@ class BeerAdapter(private val context: Context, val onShareClick:(BeerResponseMo
 
         }
 
-
-        dialog.setCancelable(false)
         dialog.setContentView(binding.root)
         dialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         dialog.show()
