@@ -1,10 +1,8 @@
 package com.tanishqchawda.beertu.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -17,8 +15,7 @@ import com.tanishqchawda.beertu.databinding.BottomDetailsBeerBinding
 import com.tanishqchawda.beertu.databinding.SingleItemBinding
 import com.tanishqchawda.beertu.model.BeerResponseModelItem
 
-class BeerAdapter(val context: Context,val onShareClick:(BeerResponseModelItem) ->Unit):PagingDataAdapter<BeerResponseModelItem,BeerAdapter.MyViewHolder>(BeerDiffUtils()) {
-    private  val TAG = "BeerAdapter"
+class BeerAdapter(private val context: Context, val onShareClick:(BeerResponseModelItem) ->Unit):PagingDataAdapter<BeerResponseModelItem,BeerAdapter.MyViewHolder>(BeerDiffUtils()) {
     inner class MyViewHolder(val binding: SingleItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(beerResponseModelItem: BeerResponseModelItem) {
@@ -52,8 +49,7 @@ class BeerAdapter(val context: Context,val onShareClick:(BeerResponseModelItem) 
     }
 
 
-    fun details(beerResponseModelItem: BeerResponseModelItem,position:Int) {
-        Log.e(TAG, "details: ${beerResponseModelItem.ingredients.hops.get(position).name}", )
+    private fun details(beerResponseModelItem: BeerResponseModelItem, position:Int) {
         val binding: BottomDetailsBeerBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context),
             R.layout.bottom_details_beer,
@@ -61,13 +57,15 @@ class BeerAdapter(val context: Context,val onShareClick:(BeerResponseModelItem) 
             false
         )
         val dialog = BottomSheetDialog(context, R.style.BottomSheetDialog)
-
         binding.apply {
+            beerModelData = beerResponseModelItem
+            positionBeer = position
             close.setOnClickListener {
                 dialog.dismiss()
             }
 
         }
+
 
         dialog.setCancelable(false)
         dialog.setContentView(binding.root)
