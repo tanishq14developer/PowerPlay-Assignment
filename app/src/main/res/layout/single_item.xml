@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="beerModel"
+            type="com.tanishqchawda.beertu.model.BeerResponseModelItem" />
+
+    </data>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iBeerImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerInside"
+                android:padding="7dp"
+                android:background="@drawable/image_background"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/tvBeerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iBeerImage"
+                android:text="@{beerModel.name}"
+                app:layout_constraintTop_toTopOf="@id/iBeerImage"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:textSize="18sp"
+                android:maxLines="2"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/white"
+                android:layout_marginEnd="10dp"
+               />
+
+            <TextView
+                android:id="@+id/tvTagline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iBeerImage"
+                android:text="@{beerModel.tagline}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvBeerName"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="2dp"
+                android:textSize="14sp"
+                android:maxLines="2"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:layout_marginEnd="10dp"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/share"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/iBeerImage"
+                app:layout_constraintTop_toBottomOf="@id/tvTagline"
+                android:layout_marginStart="10dp"
+                android:backgroundTint="@color/green"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:cornerRadius="10dp"
+                android:text="@string/share"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
