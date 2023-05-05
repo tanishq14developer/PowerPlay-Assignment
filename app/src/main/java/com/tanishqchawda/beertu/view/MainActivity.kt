@@ -41,16 +41,11 @@ class MainActivity : AppCompatActivity() {
                     beerAdapter.addLoadStateListener { loadState ->
                         val isRefreshing = loadState.refresh is LoadState.Loading
                         val isNotLoading = loadState.refresh !is LoadState.Loading
-
                         loader.isVisible = isRefreshing && beerAdapter.itemCount == 0
-
                         // Show the load state adapter when there's an error or when the load is in progress (but not for the initial load).
                         loaderAdapter.loadState = loadState.prepend
-                        rvBeerList.setPadding(0, 0, 0, if (isNotLoading) 0 else resources.getDimensionPixelSize(R.dimen.dp_56))
+                        rvBeerList.setPadding(0, 0, 0, if (isNotLoading) 0 else resources.getDimensionPixelSize(R.dimen.dp_5))
                     }
-
-
-
                     rvBeerList.adapter = beerAdapter.withLoadStateFooter(loaderAdapter)
                     beerAdapter.submitData(lifecycle,it)
 
