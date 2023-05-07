@@ -1,4 +1,4 @@
-package com.tanishqchawda.repository
+package com.tanishqchawda.beertu.repository
 
 import android.content.Context
 import androidx.paging.Pager
